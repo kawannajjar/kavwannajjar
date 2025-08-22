@@ -15,8 +15,3 @@ def courses_view(request):
     return render(request, 'website/courses.html')
 def teacher_view(request):
     return render(request, 'website/teacher.html')
-
-
-def test_view(request):
-    return render(request,'website/test.html')
-    
