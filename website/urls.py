@@ -9,6 +9,5 @@ path('contact', contact_view,name='contact'),
 path('pricing', pricing_view,name='pricing'),
 path('courses', courses_view,name='courses'),
 path('teacher', teacher_view,name='teacher'),
-path('test', test_view,name='test'),
 
 ]
