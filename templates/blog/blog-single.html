@@ -104,17 +104,13 @@
         <div class="sidebar-box ftco-animate">
           <h3>Category</h3>
           <ul class="categories">
-            <li><a href="{% url 'blog:single' pid=post.id %}">Art <span>(6)</span></a></li>
-            <li><a href="{% url 'blog:single' pid=post.id %}">Sports <span>(8)</span></a></li>
-            <li><a href="{% url 'blog:single' pid=post.id %}">Language <span>(2)</span></a></li>
-            <li><a href="{% url 'blog:single' pid=post.id %}">Food <span>(2)</span></a></li>
-            <li><a href="{% url 'blog:single' pid=post.id %}">Music <span>(2)</span></a></li>
+           <li><a href="#"> {{post.categories.all|join:", " }} </a></li>
+            {% comment %} {% for cat in post.categories.all %}
+             <li> <a href="#">{{cat.name}}</a></li>
+            {% endfor %} {% endcomment %}
           </ul>
         </div>
 
-        <!-- مشابه برای Popular Articles, Tag Cloud, Archives -->
-        <!-- همه لینک‌ها باید pid=post.id داشته باشند -->
-        
       </div><!-- END COL -->
     </div>
   </div>

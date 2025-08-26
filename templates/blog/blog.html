@@ -23,7 +23,8 @@
       <div class="col-md-6 col-lg-4 ftco-animate">
         <div class="blog-entry">
           <a href="{% url 'blog:single' pid=post.id %}" class="block-20 d-flex align-items-end"
-            style="background-image: url('{% static "images/image_1.jpg" %}');">
+            style="background-image: url('{{ post.image.url }}'); ">
+
             <div class="meta-date text-center p-2">
               <span class="day">{{ post.created_date|date:"d" }}</span>
               <span class="mos">{{ post.created_date|date:"F" }}</span>
@@ -40,7 +41,7 @@
                 <a href="{% url 'blog:single' pid=post.id %}" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a>
               </p>
               <p class="ml-auto mb-0">
-                <a href="#" class="mr-2">Admin</a>
+                <a href="#" class="mr-2">{{post.author.get_full_name}}</a>
                 <a href="{% url 'blog:single' pid=post.id %}" class="meta-chat">
                   <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                   {{ post.counted_views }}
