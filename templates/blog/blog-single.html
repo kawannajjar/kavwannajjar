@@ -1,119 +1,110 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
+{% load blog_tags %}
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static "images/bg_2.jpg" %}');">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-center justify-content-center">
-      <div class="col-md-9 ftco-animate text-center">
-        <h1 class="mb-2 bread">{{ post.title }}</h1>
-        <p class="breadcrumbs">
-          <span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
-          <span class="mr-2"><a href="{% url 'blog:index' %}">Blog <i class="ion-ios-arrow-forward"></i></a></span>
-          <span>{{ post.title }} <i class="ion-ios-arrow-forward"></i></span>
-        </p>
+{% block content %}
+  <section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_2.jpg' %}');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <h1 class="mb-2 bread">{{ post.title }}</h1>
+          <p class="breadcrumbs">
+            <span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+            <span class="mr-2"><a href="{% url 'blog:index' %}">Blog <i class="ion-ios-arrow-forward"></i></a></span>
+            <span>{{ post.title }} <i class="ion-ios-arrow-forward"></i></span>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-		
-<section class="ftco-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 ftco-animate">
-        <h2 class="mb-3">{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-        <p><img src="{% static "images/image_2.jpg" %}" alt="" class="img-fluid"></p>
-        <p>Published: {{ post.published_date|date:"d M Y" }}</p>
+  </section>
 
-        <div class="tag-widget post-tag-container mb-5 mt-5">
-          <div class="tagcloud">
-            <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Life</a>
-            <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Sport</a>
-            <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Tech</a>
-            <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Travel</a>
-          </div>
-        </div>
-        
-        <div class="about-author d-flex p-4 bg-light">
-          <div class="bio mr-5">
-            <img src="{% static "images/teacher-1.jpg" %}" alt="Image placeholder" class="img-fluid mb-4">
-          </div>
-          <div class="desc">
-            <h3>George Washington</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-          </div>
-        </div>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 ftco-animate">
+          <h2 class="mb-3">{{ post.title }}</h2>
+          <p>{{ post.content }}</p>
+          <p>
+            <img src="{% static 'images/image_2.jpg' %}" alt="" class="img-fluid" />
+          </p>
+          <p>{{ post.published_date|date:'d M Y' }}</p>
 
-        <div class="pt-5 mt-5">
-          <h3 class="mb-5 h4 font-weight-bold">6 Comments</h3>
-          <ul class="comment-list">
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="{% static "images/teacher-1.jpg" %}" alt="Image placeholder">
-              </div>
-              <div class="comment-body">
-                <h3>{{ user }}</h3>
-                <div class="meta mb-2">January 03, 2019 at 2:21pm</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure!</p>
-                <p><a href="{% url 'blog:single' pid=post.id %}" class="reply">Reply</a></p>
-              </div>
-            </li>
-
-            <!-- مشابه برای سایر کامنت‌ها، pid=post.id اضافه شود -->
-          </ul>
-
-          <div class="comment-form-wrap pt-5">
-            <h3 class="mb-5 h4 font-weight-bold">Leave a comment</h3>
-            <form action="{% url 'blog:single' pid=post.id %}" class="p-5 bg-light">
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" class="form-control" id="name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="form-group">
-                <label for="website">Website</label>
-                <input type="url" class="form-control" id="website">
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" cols="30" rows="10" class="form-control"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div> <!-- .col-lg-8 -->
-
-      <div class="col-lg-4 sidebar ftco-animate">
-        <div class="sidebar-box">
-          <form action="{% url 'blog:single' pid=post.id %}" class="search-form">
-            <div class="form-group">
-              <span class="icon icon-search"></span>
-              <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+          <div class="tag-widget post-tag-container mb-5 mt-5">
+            <div class="tagcloud">
+              <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Life</a>
+              <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Sport</a>
+              <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Tech</a>
+              <a href="{% url 'blog:single' pid=post.id %}" class="tag-cloud-link">Travel</a>
             </div>
-          </form>
-        </div>
+          </div>
 
-        <div class="sidebar-box ftco-animate">
-          <h3>Category</h3>
-          <ul class="categories">
-           <li><a href="#"> {{post.categories.all|join:", " }} </a></li>
-            {% comment %} {% for cat in post.categories.all %}
-             <li> <a href="#">{{cat.name}}</a></li>
-            {% endfor %} {% endcomment %}
-          </ul>
-        </div>
+          {% include 'blog/blog-write.html' %}
 
-      </div><!-- END COL -->
+          <div class="pt-5 mt-5">
+            <h3 class="mb-5 h4 font-weight-bold">6 Comments</h3>
+            <ul class="comment-list">
+              <li class="comment">
+                <div class="vcard bio">
+                  <img src="{% static 'images/teacher-1.jpg' %}" alt="Image placeholder" />
+                </div>
+                <div class="comment-body">
+                  <h3>{{ user }}</h3>
+                  <div class="meta mb-2">January 03, 2019 at 2:21pm</div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure!</p>
+                  <p>
+                    <a href="{% url 'blog:single' pid=post.id %}" class="reply">Reply</a>
+                  </p>
+                </div>
+              </li>
+
+              <!-- مشابه برای سایر کامنت‌ها، pid=post.id اضافه شود -->
+            </ul>
+
+            <div class="comment-form-wrap pt-5">
+              <h3 class="mb-5 h4 font-weight-bold">Leave a comment</h3>
+              <form action="{% url 'blog:single' pid=post.id %}" class="p-5 bg-light">
+                <div class="form-group">
+                  <label for="name">Name *</label>
+                  <input type="text" class="form-control" id="name" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" class="form-control" id="email" />
+                </div>
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="url" class="form-control" id="website" />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> <!-- .col-lg-8 -->
+
+        <div class="col-lg-4 sidebar ftco-animate">
+          {% include 'blog/blog-serach.html' %}
+
+          <div class="sidebar-box ftco-animate">
+            <h3>Category</h3>
+            <ul class="categories">
+              {% comment %} <li>
+                <a href="#">{{ post.categories.all|join:', ' }}</a>
+              </li> {% endcomment %}
+              {% for cat in post.categories.all %}
+                <a href="">{{ cat.name }}</a> {% if not forloop.last %},{% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <!-- END COL -->
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 {% endblock %}

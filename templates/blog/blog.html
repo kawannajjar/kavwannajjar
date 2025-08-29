@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <section class="hero-wrap hero-wrap-2" style="background-image: url('{% static "images/bg_2.jpg" %}');">
   <div class="overlay"></div>
   <div class="container">
@@ -26,19 +27,20 @@
             style="background-image: url('{{ post.image.url }}'); ">
 
             <div class="meta-date text-center p-2">
-              <span class="day">{{ post.created_date|date:"d" }}</span>
-              <span class="mos">{{ post.created_date|date:"F" }}</span>
-              <span class="yr">{{ post.created_date|date:"Y" }}</span>
+              <span class="day">{{ post.published_date|date:"d" }}</span>
+              <span class="mos">{{ post.published_date|date:"F" }}</span>
+              <span class="yr">{{ post.published_date|date:"Y" }}</span>
             </div>
           </a>
           <div class="text bg-white p-4">
             <h3 class="heading">
               <a href="{% url 'blog:single' pid=post.id %}">{{ post.title }}</a>
             </h3>
-            <p>{{ post.content|truncatechars:100 }}</p>
+            <p>{{ post.content|truncatechars:50 }}</p>
             <div class="d-flex align-items-center mt-4">
               <p class="mb-0">
-                <a href="{% url 'blog:single' pid=post.id %}" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a>
+                <a href="{% url 'blog:single' pid=post.id %}" class="btn btn-secondary">Read More <span
+                    class="ion-ios-arrow-round-forward"></span></a>
               </p>
               <p class="ml-auto mb-0">
                 <a href="#" class="mr-2">{{post.author.get_full_name}}</a>
